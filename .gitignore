@@ -1,3 +1,6 @@
+mnist_train.csv
+mnist_test.csv
+
 # Compiled class file
 *.class
 
