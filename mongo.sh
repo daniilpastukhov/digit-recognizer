@@ -1,0 +1,5 @@
+#mongoimport -d digit_recognition -c digits_test --type csv --file ~/IdeaProjects/digit-recognizer/mnist_png/mnist_test.csv --headerline
+#mongoimport -d digit_recognition -c digits_test --type csv --file ~/IdeaProjects/digit-recognizer/mnist_png/mnist_test.csv --headerline
+
+#mongoimport --host digit-classification-shard-0/digit-classification-shard-00-00-l3sse.mongodb.net:27017,digit-classification-shard-00-01-l3sse.mongodb.net:27017,digit-classification-shard-00-02-l3sse.mongodb.net:27017 --ssl --username admin --password admin --authenticationDatabase admin --db digits --collection digits_train --type csv --file ~/IdeaProjects/semestral/data/mnist_train.csv --headerline
+mongoimport --host digit-classification-shard-0/digit-classification-shard-00-00-l3sse.mongodb.net:27017,digit-classification-shard-00-01-l3sse.mongodb.net:27017,digit-classification-shard-00-02-l3sse.mongodb.net:27017 --ssl --username admin --password admin --authenticationDatabase admin --db digits --collection digits_test --type csv --file ~/IdeaProjects/semestral/data/mnist_test_halfed.csv --headerline
