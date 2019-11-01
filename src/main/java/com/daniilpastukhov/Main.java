@@ -1,17 +1,13 @@
 package com.daniilpastukhov;
 
+import com.daniilpastukhov.controllers.Controller;
+import com.daniilpastukhov.database.CouchDB;
+import com.daniilpastukhov.database.NoSqlDatabase;
+import com.daniilpastukhov.models.Model;
 import javafx.application.Application;
-import javafx.application.Platform;
-import javafx.application.Preloader;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
-import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -21,131 +17,43 @@ import java.io.*;
  */
 
 public class Main extends Application {
-    BooleanProperty ready = new SimpleBooleanProperty(false);
-
-    private void longStart() {
-        //simulate long init in background
-        Task task = new Task<Void>() {
-            @Override
-            protected Void call() throws Exception {
-                int max = 10;
-                for (int i = 1; i <= max; i++) {
-                    Thread.sleep(1000);
-                    // Send progress to preloader
-                    notifyPreloader(new Preloader.ProgressNotification(((double) i)/max));
-                }
-                // After init is ready, the app is ready to be shown
-                // Do this before hiding the preloader stage to prevent the
-                // app from exiting prematurely
-                ready.setValue(Boolean.TRUE);
-
-                notifyPreloader(new Preloader.StateChangeNotification(
-                        Preloader.StateChangeNotification.Type.BEFORE_START));
-
-                return null;
-            }
-        };
-        new Thread(task).start();
-    }
-
-
     /**
      * Trains model or load it in case it was trained already, then renders UI.
+     *
      * @param primaryStage Primary stage.
      * @throws IOException If training was't successful.
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-        longStart();
-        primaryStage.setScene(new Scene(new Label("Application started"),
-                400, 400));
+//        NoSqlDatabase db = new MongoDB("mongodb+srv://admin:%61%64%6d%69%6e@digit-classification-l3sse.mongodb.net/test?retryWrites=true&w=majority").init();
+        NoSqlDatabase db = new CouchDB().init();
+//        Pair<AttributeDataset, AttributeDataset> tables = db.getDatasets();
 
-        ready.addListener(new ChangeListener<Boolean>(){
-            public void changed(
-                    ObservableValue<? extends Boolean> ov, Boolean t, Boolean t1) {
-                if (Boolean.TRUE.equals(t1)) {
-                    Platform.runLater(new Runnable() {
-                        public void run() {
-                            File yourFile = new File("model.ser");
-                            Model model = null;
-                            Database database = new Database().init();
+        File modelPath = new File("model.ser");
+        Model model;
 
-                            if (!yourFile.exists()) {
-                                try {
-                                    model = trainModel(database);
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                            } else {
-                                model = deserialize("model.ser");
-                                model.setDatabase(database);
-                            }
+        if (!modelPath.exists()) model = trainModel(db);
+        else model = deserialize("model.ser");
 
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui.fxml"));
 
-                            Controller controller = new Controller(model, database);
-                            fxmlLoader.setController(controller);
+        Controller controller = new Controller(model, db);
+        fxmlLoader.setController(controller);
 
-                            Parent root = null;
-                            try {
-                                root = fxmlLoader.load();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
+        Parent root = fxmlLoader.load();
 
-                            primaryStage.setScene(new Scene(root, 600, 400));
-                            primaryStage.setTitle("Digit recognizer");
-                            primaryStage.show();
-                        }
-                    });
-                }
-            }
-        });;
-
-//        File yourFile = new File("model.ser");
-//        Model model;
-//        Database database = new Database().init();
-//
-//        if (!yourFile.exists()) {
-////            Group root = new Group();
-////            Scene trainingScene = new Scene(root, 150, 100);
-////            primaryStage.setScene(trainingScene);
-////            primaryStage.setTitle("Training neural network");
-////
-////            ProgressBar progressBar = new ProgressBar(0);
-////            HBox hb = new HBox();
-////            hb.setSpacing(5);
-////            hb.setAlignment(Pos.CENTER);
-////            hb.getChildren().addAll(progressBar);
-////            progressBar.setProgress(0.25);
-////            trainingScene.setRoot(hb);
-////            primaryStage.show();
-//
-//            model = trainModel(database);
-////            progressBar.setProgress(1);
-//        } else {
-//            model = deserialize("model.ser");
-//            model.setDatabase(database);
-//        }
-//
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ui.fxml"));
-//
-//        Controller controller = new Controller(model, database);
-//        fxmlLoader.setController(controller);
-//
-//        Parent root = fxmlLoader.load();
-//
-//        primaryStage.setScene(new Scene(root, 600, 400));
-//        primaryStage.setTitle("Digit recognizer");
-//        primaryStage.show();
+        primaryStage.setScene(new Scene(root, 600, 400));
+        primaryStage.setTitle("Digit recognizer");
+        primaryStage.show();
     }
 
     /**
      * Serializes object.
+     *
      * @param path Where to serialize object.
-     * @param cls Object to serialize.
+     * @param cls  Object to serialize.
      */
-    static <T> void serialize(String path, T cls) {
+    public static <T> void serialize(String path, T cls) {
         try {
             File yourFile = new File(path);
             yourFile.createNewFile();
@@ -162,6 +70,7 @@ public class Main extends Application {
 
     /**
      * Deserializes object.
+     *
      * @param path Path of serialized object.
      * @return Deserialized object.
      */
@@ -184,14 +93,15 @@ public class Main extends Application {
 
     /**
      * Trains and serialises model as 'model.ser'.
+     *
      * @param database Initialized database instance.
      * @return Model with set database.
      * @throws IOException If parsing was unsuccessful.
      */
-    private Model trainModel(Database database) throws IOException {
-        Model model = new Model().train();
+    private Model trainModel(NoSqlDatabase database) throws IOException {
+        Model model = new Model();
+        model = model.train(database.getDatasets());
         serialize("model.ser", model);
-        model.setDatabase(database);
         return model;
     }
 

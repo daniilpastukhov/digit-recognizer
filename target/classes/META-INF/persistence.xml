@@ -1,0 +1,35 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+
+<!--<persistence xmlns="http://java.sun.com/xml/ns/persistence"-->
+<!--             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"-->
+<!--             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"-->
+<!--             version="2.0">-->
+<!--    <persistence-unit name="digits" transaction-type="JTA">-->
+<!--        <provider>org.hibernate.ogm.jpa.HibernateOgmPersistence</provider>-->
+<!--        <class>com.daniilpastukhov.Main</class>-->
+<!--        <properties>-->
+<!--            <property name="hibernate.ogm.datastore.provider" value="mongodb"/>-->
+<!--            <property name="hibernate.ogm.datastore.database" value="digits"/>-->
+<!--            <property name="hibernate.ogm.datastore.host"-->
+<!--                      value="digit-classification-shard-0/digit-classification-shard-00-00-l3sse.mongodb.net:27017,digit-classification-shard-00-01-l3sse.mongodb.net:27017,digit-classification-shard-00-02-l3sse.mongodb.net:27017"/>-->
+<!--            <property name="hibernate.ogm.datastore.create_database" value="true"/>-->
+<!--            <property name="hibernate.ogm.datastore.username" value="admin"/>-->
+<!--            <property name="hibernate.ogm.datastore.password" value="admin"/>-->
+<!--        </properties>-->
+<!--    </persistence-unit>-->
+<!--</persistence>-->
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://www.oracle.com/webfolder/technetwork/jsc/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+    <persistence-unit name="digits" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <properties>
+            <property name="eclipselink.target-database" value="org.eclipse.persistence.nosql.adapters.mongo.MongoPlatform"/>
+            <property name="eclipselink.nosql.connection-spec" value="org.eclipse.persistence.nosql.adapters.mongo.MongoConnectionSpec"/>
+            <property name="eclipselink.nosql.property.mongo.port" value="27017,27017,27017"/>
+            <property name="eclipselink.nosql.property.mongo.host" value="digit-classification-shard-0/digit-classification-shard-00-00-l3sse.mongodb.net,digit-classification-shard-00-01-l3sse.mongodb.net,digit-classification-shard-00-02-l3sse.mongodb.net"/>
+            <property name="eclipselink.nosql.property.mongo.db" value="digits"/>
+<!--            <property name="eclipselink.logging.level" value="FINEST"/>-->
+<!--            <property name="eclipselink.logging.metamodel" value="FINEST"/>-->
+        </properties>
+    </persistence-unit>
+</persistence>
