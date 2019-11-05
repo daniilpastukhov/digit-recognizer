@@ -1,5 +1,8 @@
-package com.daniilpastukhov;
+package com.daniilpastukhov.controllers;
 
+import com.daniilpastukhov.Main;
+import com.daniilpastukhov.models.Model;
+import com.daniilpastukhov.database.NoSqlDatabase;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,20 +15,19 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import org.bson.Document;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 
 /**
  * JavaFX UI Controller.
  */
 public class Controller {
-    private Database database;
+    private NoSqlDatabase database;
     private Model model;
-    private final int CANVAS_WIDTH = 150;
-    private final int CANVAS_HEIGHT = 150;
     private final int LINE_WIDTH = 7; // Width of the drawn line
+    private Boolean verbose = true; // Prints more information if set to true
 
     /**
      * Constructor to pass model and db to controller.
@@ -33,7 +35,7 @@ public class Controller {
      * @param model Trained model.
      * @param db    Initialized database.
      */
-    Controller(Model model, Database db) {
+    public Controller(Model model, NoSqlDatabase db) {
         this.model = model;
         database = db;
     }
@@ -42,9 +44,9 @@ public class Controller {
     private Canvas canvas;
     public Button clearButton;
     public Button predictButton;
-    public Text predictionLabel;
+    private Text predictionLabel;
     public Button retrainButton;
-    public TextField correctDigitField;
+    private TextField correctDigitField;
 
 
     /**
@@ -65,19 +67,18 @@ public class Controller {
     public void predictDigit(ActionEvent actionEvent) {
         double[] pixels = getPixels();
 
-//        System.out.print("[");
-//        for (int i = 0; i < 784; i++) System.out.print(pixels[i] + ",");
-//        System.out.println("]");
-
-        for (int y = 0; y < 28; y++) {
-            for (int x = 0; x < 28; x++) {
-                System.out.printf("%3d ", (int) pixels[(y * 28) + x]);
+        if (verbose) {
+            System.out.println(Arrays.toString(pixels));
+            for (int y = 0; y < 28; y++) {
+                for (int x = 0; x < 28; x++) {
+                    System.out.printf("%3d ", (int) pixels[(y * 28) + x]);
+                }
+                System.out.println();
             }
-            System.out.println();
+            System.out.println(model.getModel().predict(pixels));
         }
 
-        System.out.println(model.model.predict(pixels));
-        predictionLabel.setText("Prediciton: " + String.valueOf(model.model.predict(pixels)));
+        predictionLabel.setText("Prediciton: " + String.valueOf(model.getModel().predict(pixels)));
     }
 
     /**
@@ -137,24 +138,11 @@ public class Controller {
     public void retrainWithNewImage(ActionEvent actionEvent) {
         double[] pixels = getPixels();
         int label = Integer.parseInt(correctDigitField.getText());
-        System.out.println(label);
+        if (verbose) System.out.println(label);
 
-        Document document = new Document();
-        document.append("label", label);
-
-        for (int y = 1; y <= 28; y++) {
-            for (int x = 1; x <= 28; x++) {
-                document.append(y + "x" + x, (int) pixels[((y - 1) * 28) + (x - 1)]);
-                System.out.printf("%3d", (int) pixels[((y - 1) * 28) + (x - 1)]);
-            }
-            System.out.println();
-        }
-
-        database.addImage(document);
+        database.addImage(pixels, label);
         model.update(pixels, label);
-        model.setDatabase(null);
         Main.serialize("model.ser", model);
-        model.setDatabase(database);
     }
 
     /**
@@ -164,6 +152,8 @@ public class Controller {
      * @return Scaled image.
      */
     private BufferedImage getScaledImage(Canvas canvas) {
+        int CANVAS_WIDTH = 150;
+        int CANVAS_HEIGHT = 150;
         WritableImage writableImage = new WritableImage(CANVAS_WIDTH, CANVAS_HEIGHT);
         canvas.snapshot(null, writableImage);
         Image tmp = SwingFXUtils.fromFXImage(writableImage, null).getScaledInstance(28, 28, Image.SCALE_DEFAULT);

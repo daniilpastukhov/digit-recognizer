@@ -1,0 +1,2 @@
+cat ../../data/mnist_train.csv | couchimport --url http://0.0.0.0:5984 --database "digits_train" --overwrite true
+cat ../../data/mnist_test.csv | couchimport --url http://0.0.0.0:5984 --database "digits_test" --overwrite true

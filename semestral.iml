@@ -1,5 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="jpa" name="JPA">
+      <configuration>
+        <setting name="validation-enabled" value="true" />
+        <datasource-mapping>
+          <factory-entry name="Entities" />
+          <factory-entry name="digits" />
+        </datasource-mapping>
+        <naming-strategy-map />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
+      </configuration>
+    </facet>
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
+  </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_10">
     <output url="file://$MODULE_DIR$/target/classes" />
     <output-test url="file://$MODULE_DIR$/target/test-classes" />
@@ -15,18 +31,17 @@
     <orderEntry type="library" name="Maven: com.github.haifengl:smile-data:1.5.3" level="project" />
     <orderEntry type="library" name="Maven: com.github.haifengl:smile-graph:1.5.3" level="project" />
     <orderEntry type="library" name="Maven: com.github.haifengl:smile-math:1.5.3" level="project" />
-    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.25" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.22" level="project" />
     <orderEntry type="library" name="Maven: org.mongodb:mongo-java-driver:3.11.0" level="project" />
     <orderEntry type="library" name="Maven: tech.tablesaw:tablesaw-json:0.35.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.9.2" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.0" level="project" />
-    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.9" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.9.5" level="project" />
     <orderEntry type="library" name="Maven: com.github.wnameless:json-flattener:0.6.0" level="project" />
     <orderEntry type="library" name="Maven: com.eclipsesource.minimal-json:minimal-json:0.9.5" level="project" />
     <orderEntry type="library" name="Maven: org.apache.commons:commons-text:1.4" level="project" />
     <orderEntry type="library" name="Maven: com.googlecode.json-simple:json-simple:1.1.1" level="project" />
     <orderEntry type="library" name="Maven: junit:junit:4.10" level="project" />
     <orderEntry type="library" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
+    <orderEntry type="library" name="Maven: org.eclipse.persistence:javax.persistence:2.2.1" level="project" />
     <orderEntry type="library" name="Maven: tech.tablesaw:tablesaw-saw:0.35.0" level="project" />
     <orderEntry type="library" name="Maven: org.iq80.snappy:snappy:0.4" level="project" />
     <orderEntry type="library" name="Maven: tech.tablesaw:tablesaw-core:0.35.0" level="project" />
@@ -48,7 +63,6 @@
     <orderEntry type="library" name="Maven: org.deeplearning4j:deeplearning4j-common:1.0.0-beta5" level="project" />
     <orderEntry type="library" name="Maven: org.deeplearning4j:deeplearning4j-datavec-iterators:1.0.0-beta5" level="project" />
     <orderEntry type="library" name="Maven: org.deeplearning4j:deeplearning4j-modelimport:1.0.0-beta5" level="project" />
-    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.0" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:hdf5-platform:1.10.5-1.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:hdf5:1.10.5-1.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:hdf5:linux-x86:1.10.5-1.5.1" level="project" />
@@ -151,7 +165,7 @@
     <orderEntry type="library" name="Maven: org.bytedeco:leptonica:windows-x86_64:1.78.0-1.5.1" level="project" />
     <orderEntry type="library" name="Maven: org.deeplearning4j:deeplearning4j-ui-components:1.0.0-beta5" level="project" />
     <orderEntry type="library" name="Maven: org.slf4j:slf4j-log4j12:1.7.28" level="project" />
-    <orderEntry type="library" name="Maven: log4j:log4j:1.2.17" level="project" />
+    <orderEntry type="library" name="Maven: log4j:log4j:1.2.16" level="project" />
     <orderEntry type="library" name="Maven: org.nd4j:nd4j-native:1.0.0-beta5" level="project" />
     <orderEntry type="library" name="Maven: org.nd4j:nd4j-native:macosx-x86_64:1.0.0-beta5" level="project" />
     <orderEntry type="library" name="Maven: org.bytedeco:javacpp:1.5.1-1" level="project" />
@@ -172,5 +186,17 @@
     <orderEntry type="library" name="Maven: com.clearspring.analytics:stream:2.7.0" level="project" />
     <orderEntry type="library" name="Maven: net.sf.opencsv:opencsv:2.3" level="project" />
     <orderEntry type="library" name="Maven: com.tdunning:t-digest:3.2" level="project" />
+    <orderEntry type="library" name="Maven: com.rethinkdb:rethinkdb-driver:2.3.3" level="project" />
+    <orderEntry type="library" name="Maven: com.cloudant:cloudant-client:2.17.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.2" level="project" />
+    <orderEntry type="library" name="Maven: com.cloudant:cloudant-http:2.17.0" level="project" />
+    <orderEntry type="library" name="Maven: org.ektorp:org.ektorp:1.5.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient:4.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpcore:4.3" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.httpcomponents:httpclient-cache:4.3" level="project" />
+    <orderEntry type="library" scope="RUNTIME" name="Maven: org.slf4j:jcl-over-slf4j:1.6.4" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.9.5" level="project" />
+    <orderEntry type="library" name="Maven: net.sourceforge.findbugs:annotations:1.3.2" level="project" />
+    <orderEntry type="library" name="Maven: com.fasterxml.jackson.core:jackson-core:2.9.9" level="project" />
   </component>
 </module>
