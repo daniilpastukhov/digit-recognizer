@@ -1,24 +1,3 @@
-.root {
-    /*-fx-background-image: url("/krasavec-petukh.jpg");*/
-    /*-fx-background-repeat: stretch;*/
-    /*-fx-background-position: center center;*/
-    /*-fx-text-fill: #fff;*/
-    /*-fx-font-size: 30px;*/
-    /*-fx-text-alignment: center;*/
-    -fx-background-color: #fff;
-}
-
-#button {
-    /*-fx-border-radius: 15px;*/
-    /*-fx-border-width: 0px;*/
-    /*-fx-background-color: #fff;*/
-}
-
-#text {
-    /*-fx-text-fill: #fff;*/
-    /*-fx-text-alignment: center;*/
-}
-
-#canvas {
+.root, #canvas {
     -fx-background-color: #fff;
 }
