@@ -4,6 +4,7 @@ import com.daniilpastukhov.controllers.Controller;
 import com.daniilpastukhov.database.CouchDB;
 import com.daniilpastukhov.database.MongoDB;
 import com.daniilpastukhov.database.NoSqlDatabase;
+import com.daniilpastukhov.database.RethinkDB;
 import com.daniilpastukhov.models.Model;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -29,6 +30,7 @@ public class Main extends Application {
         final String mongoUrl = "mongodb+srv://admin:%61%64%6d%69%6e@digit-classification-l3sse.mongodb.net/test?retryWrites=true&w=majority";
         NoSqlDatabase db = new MongoDB(mongoUrl).init();
 //        NoSqlDatabase db = new CouchDB().init();
+//        NoSqlDatabase db = new RethinkDB().init();
 
         File modelPath = new File("model.ser");
         Model model;

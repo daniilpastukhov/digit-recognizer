@@ -1,5 +1,6 @@
 mnist_train.csv
 mnist_test.csv
+.DS_Store
 
 # Compiled class file
 *.class

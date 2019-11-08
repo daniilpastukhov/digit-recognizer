@@ -44,8 +44,6 @@ public class MongoDB implements NoSqlDatabase {
         ArrayList<String> trainRows = new ArrayList<>();
         ArrayList<String> testRows = new ArrayList<>();
 
-        System.out.println(trainCollection.find().first().toJson().replace(trainCollection.find().first().toJson().substring(1, 46), ""));
-
         for (Document doc : trainCollection.find())
             trainRows.add(doc.toJson().replace(doc.toJson().substring(1, 46), ""));
         for (Document doc : testCollection.find())
@@ -55,7 +53,6 @@ public class MongoDB implements NoSqlDatabase {
         Table trainTable = jr.read(JsonReadOptions.builderFromString("[" + String.join(",", trainRows) + "]").build());
         Table testTable = jr.read(JsonReadOptions.builderFromString("[" + String.join(",", testRows) + "]").build());
 
-
         List<String> colNames = new ArrayList<>();
         for (int i = 1; i <= 28; i++)
             for (int j = 1; j <= 28; j++)
@@ -63,7 +60,7 @@ public class MongoDB implements NoSqlDatabase {
 
         Table sortedTrainTable = Table.create().addColumns(trainTable.column("label"));
         Table sortedTestTable = Table.create().addColumns(testTable.column("label"));
-        ;
+
         for (String col : colNames) {
             sortedTrainTable.addColumns(trainTable.column(col));
             sortedTestTable.addColumns(testTable.column(col));

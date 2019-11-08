@@ -57,7 +57,7 @@ public class CouchDB implements NoSqlDatabase {
         System.out.println("> Connecting to database.");
         try {
             HttpClient httpClient = new StdHttpClient.Builder()
-                    .url("http://localhost:5984")
+                    .url("http://0.0.0.0:5984")
                     .username("admin")
                     .password("admin")
                     .build();
@@ -91,8 +91,6 @@ public class CouchDB implements NoSqlDatabase {
 
         parseDocuments(trainTable, trainIds, trainDb);
         parseDocuments(testTable, testIds, testDb);
-
-        System.out.println(trainTable.sampleN(1));
 
         return new Pair<>(trainTable.smile().nominalDataset("label"), testTable.smile().nominalDataset("label"));
     }
@@ -129,9 +127,6 @@ public class CouchDB implements NoSqlDatabase {
                 value.append((int) pixels[((i - 1) * 28) + j - 1]).append((i == 28 && j == 28) ? "" : ",");
             }
         }
-
-        System.out.println(key);
-        System.out.println(value);
 
         map.put(key.toString(), value.toString());
         trainDb.create(map);

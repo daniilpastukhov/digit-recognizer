@@ -40,8 +40,6 @@ public class RethinkDB implements NoSqlDatabase {
         ArrayList<String> trainRows = new ArrayList<>();
         ArrayList<String> testRows = new ArrayList<>();
 
-        System.out.println(trainCursor.next().toString().replaceAll("\"(\\d+)\"", "$1"));
-
         for (Object doc : trainCursor) trainRows.add(doc.toString().replaceAll("\"(\\d+)\"", "$1"));
         for (Object doc : testCursor) testRows.add(doc.toString().replaceAll("\"(\\d+)\"", "$1"));
 
@@ -52,29 +50,17 @@ public class RethinkDB implements NoSqlDatabase {
         AttributeDataset trainDataset = trainTable.smile().nominalDataset("label");
         AttributeDataset testDataset = testTable.smile().nominalDataset("label");
 
-        System.out.println(trainDataset.head(1));
-
         return new Pair<>(trainDataset, testDataset);
     }
 
     @Override
     public void addImage(double[] pixels, int label) {
         Map<String, Object> map = new HashMap<String, Object>();
-        StringBuilder key = new StringBuilder();
-        StringBuilder value = new StringBuilder();
-        key.append("label,");
-        value.append(label).append(",");
-        for (int i = 1; i <= 28; i++) {
-            for (int j = 1; j <= 28; j++) {
-                key.append(i).append("x").append(j).append((i == 28 && j == 28) ? "" : ",");
-                value.append((int) pixels[((i - 1) * 28) + j - 1]).append((i == 28 && j == 28) ? "" : ",");
-            }
-        }
+        for (int i = 1; i <= 28; i++)
+            for (int j = 1; j <= 28; j++)
+                map.put(i + "x" + j, (int) pixels[((i - 1) * 28) + j - 1]);
 
-        System.out.println(key);
-        System.out.println(value);
-
-        map.put(key.toString(), value.toString());
-        rethinkDB.db("digits").table("digits_train").insert(map);
+        map.put("label", label);
+        rethinkDB.db("digits").table("digits_train").insert(map).run(connection);
     }
 }

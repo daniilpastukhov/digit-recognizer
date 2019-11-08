@@ -27,7 +27,7 @@ public class Controller {
     private NoSqlDatabase database;
     private Model model;
     private final int LINE_WIDTH = 7; // Width of the drawn line
-    private Boolean verbose = true; // Prints more information if set to true
+    private Boolean verbose = false; // Prints more information if set to true
 
     /**
      * Constructor to pass model and db to controller.
@@ -44,10 +44,9 @@ public class Controller {
     private Canvas canvas;
     public Button clearButton;
     public Button predictButton;
-    private Text predictionLabel;
+    public Text predictionLabel;
     public Button retrainButton;
-    private TextField correctDigitField;
-
+    public TextField correctDigitField;
 
     /**
      * Fills canvas with black color when application launches.
@@ -78,7 +77,7 @@ public class Controller {
             System.out.println(model.getModel().predict(pixels));
         }
 
-        predictionLabel.setText("Prediciton: " + String.valueOf(model.getModel().predict(pixels)));
+        predictionLabel.setText("Prediciton: " + model.getModel().predict(pixels));
     }
 
     /**
