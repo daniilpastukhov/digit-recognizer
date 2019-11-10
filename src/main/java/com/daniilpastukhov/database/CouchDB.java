@@ -89,6 +89,8 @@ public class CouchDB implements NoSqlDatabase {
         List<String> trainIds = trainDb.getAllDocIds();
         List<String> testIds = testDb.getAllDocIds();
 
+        System.out.println("> Collections were extracted.");
+
         parseDocuments(trainTable, trainIds, trainDb);
         parseDocuments(testTable, testIds, testDb);
 

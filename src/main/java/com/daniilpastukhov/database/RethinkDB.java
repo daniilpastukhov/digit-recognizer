@@ -36,7 +36,7 @@ public class RethinkDB implements NoSqlDatabase {
     public Pair<AttributeDataset, AttributeDataset> getDatasets() throws IOException {
         Cursor trainCursor = rethinkDB.db("digits").table("digits_train").without("id").map(ReqlExpr::toJsonString).run(connection);
         Cursor testCursor = rethinkDB.db("digits").table("digits_test").without("id").map(ReqlExpr::toJson).run(connection);
-
+        System.out.println("> Collections were extracted.");
         ArrayList<String> trainRows = new ArrayList<>();
         ArrayList<String> testRows = new ArrayList<>();
 

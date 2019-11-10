@@ -35,12 +35,12 @@ public class MongoDB implements NoSqlDatabase {
         MongoDatabase database = mongoClient.getDatabase("digits");
         trainCollection = database.getCollection("digits_train");
         testCollection = database.getCollection("digits_test");
-        System.out.println("> Collections were extracted.");
         return this;
     }
 
     @Override
     public Pair<AttributeDataset, AttributeDataset> getDatasets() throws IOException {
+        System.out.println("> Collections were extracted.");
         ArrayList<String> trainRows = new ArrayList<>();
         ArrayList<String> testRows = new ArrayList<>();
 
