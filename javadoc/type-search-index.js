@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.daniilpastukhov.controllers","l":"Controller"},{"p":"com.daniilpastukhov.database","l":"CouchDB"},{"p":"com.daniilpastukhov","l":"Main"},{"p":"com.daniilpastukhov.models","l":"Model"},{"p":"com.daniilpastukhov.database","l":"MongoDB"},{"p":"com.daniilpastukhov.database","l":"NoSqlDatabase"},{"p":"com.daniilpastukhov.database","l":"RethinkDB"}]

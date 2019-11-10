@@ -53,6 +53,7 @@ public class Main extends Application {
     /**
      * Serializes object.
      *
+     * @param <T>  Any serializable class type.
      * @param path Where to serialize object.
      * @param cls  Object to serialize.
      */

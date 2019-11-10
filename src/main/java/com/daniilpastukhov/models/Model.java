@@ -22,6 +22,7 @@ public class Model implements Serializable {
     /**
      * Trains model.
      *
+     * @param datasets Pair containing train and test datasets. The key is train dataset, the value is test dataset.
      * @return Trained model.
      * @throws IOException If reading dataset wasn't successful.
      */

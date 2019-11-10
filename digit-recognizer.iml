@@ -56,6 +56,16 @@
     <orderEntry type="library" name="Maven: org.roaringbitmap:RoaringBitmap:0.7.14" level="project" />
     <orderEntry type="library" name="Maven: com.univocity:univocity-parsers:2.7.5" level="project" />
     <orderEntry type="library" name="Maven: io.github.classgraph:classgraph:4.8.22" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:13-ea+14b" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-base:mac:13-ea+14b" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:13-ea+14b" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-fxml:mac:13-ea+14b" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:13-ea+14b" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-controls:mac:13-ea+14b" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:13-ea+14b" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-swing:mac:13-ea+14b" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:13-ea+14b" level="project" />
+    <orderEntry type="library" name="Maven: org.openjfx:javafx-graphics:mac:13-ea+14b" level="project" />
     <orderEntry type="library" name="Maven: com.rethinkdb:rethinkdb-driver:2.3.3" level="project" />
     <orderEntry type="library" name="Maven: com.cloudant:cloudant-client:2.17.0" level="project" />
     <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.8.2" level="project" />
