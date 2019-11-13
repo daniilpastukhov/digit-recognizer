@@ -27,7 +27,7 @@ public class Main extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws IOException {
-        final String mongoUrl = "mongodb+srv://%61%64%6d%69%6e:%61%64%6d%69%6e@digit-classification-l3sse.mongodb.net/test?retryWrites=true&w=majority";
+        final String mongoUrl = System.getenv("MONGODB_URI");
         NoSqlDatabase db = new MongoDB(mongoUrl).init();
 //        NoSqlDatabase db = new CouchDB().init();
 //        NoSqlDatabase db = new RethinkDB().init();

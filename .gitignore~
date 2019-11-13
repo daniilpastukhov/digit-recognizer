@@ -1,7 +1,4 @@
 .DS_Store
-env_linux.sh
-env_windows.bat
-
 
 # Compiled class file
 *.class

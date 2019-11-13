@@ -61,7 +61,6 @@
             <version>13-ea+14b</version>
         </dependency>
 
-
         <dependency>
             <groupId>com.rethinkdb</groupId>
             <artifactId>rethinkdb-driver</artifactId>
@@ -95,6 +94,7 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
+
     <build>
         <plugins>
             <plugin>
@@ -120,12 +120,28 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+                <finalName>digit-recognizer</finalName>
+                <appendAssemblyId>false</appendAssemblyId>
+                <archive>
+                    <manifest>
+                        <mainClass>com.daniilpastukhov.Main</mainClass>
+                    </manifest>
+                </archive>
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+            </configuration>
+        </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
-                    <source>10</source>
-                    <target>10</target>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
