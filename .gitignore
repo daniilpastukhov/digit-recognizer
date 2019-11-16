@@ -16,7 +16,6 @@ env_windows.bat
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
