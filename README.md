@@ -19,6 +19,19 @@ java -jar target/digit-recognizer.jar
 ```
 > There is also already built jar file with the same name located in the root folder.
 
+## Scripts
+To run insert scripts, you need to go to the same folder as scripts are.
+
+- Use *couchdb.sh* to import data to CouchDB database.
+> MONGODB_URI, MONGODB_LOGIN, MONGODB_PASSWORD correctly set environment variables are required!
+- Use *mongo.sh* to import data to MongoDB database.
+- Use *couchdb.sh* to import data to CouchDB database.
+
+#### CouchDB
+> Tested on MacOS only. Proper working on Windows/Linux isn't guaranteed!
+- You can run local CouchDB database inside Docker container using *rundb.sh* script.
+- To stop Docker container, you can use *stopdb.sh* script.
+
 ## Project structure
 
 ```
@@ -37,7 +50,7 @@ java -jar target/digit-recognizer.jar
 │   │   ├── mongo.sh (import data to MongoDB cluster (environment variables are required!)
 │   │   └── rethink.sh (import data to local RethinkDB database)
 │   ├── rundb.sh (run local CouchDB database as Docker container)
-│   └── stopdb.sh (stop local CouchDB database and remove its Docker image)
+│   └── stopdb.sh (stop local CouchDB database and delete its downloaded Docker image)
 └── src
     └── main
         ├── java
