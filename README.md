@@ -1,5 +1,23 @@
-# digit-recognizer
-Digit classification program written in Java.
+# Digit Recognizer
+Digit classification program written in Java (based on MNIST digits dataset).
+
+## Building the project
+- Delete all automatically created files:
+```sh
+mvn clean
+```
+
+- Build the project and generate documentation
+```sh
+mvn assembly:assembly
+```
+
+## Usage
+Jar file is automatically generated in *target/* folder, so you need to run it from there.
+```sh
+java -jar target/digit-recognizer.jar
+```
+> There is also already built jar file with the same name located in the root folder.
 
 ## Project structure
 
