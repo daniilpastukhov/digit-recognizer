@@ -134,6 +134,12 @@ public class CouchDB implements NoSqlDatabase {
         trainDb.create(map);
     }
 
+    /**
+     *
+     * @param connector CouchDB database instance.
+     * @param id Image id in database.
+     * @return MnistImage class, representing the image.
+     */
     private MnistImage getImage(CouchDbConnector connector, String id) {
         Map map = connector.find(Map.class, id);
         map.remove("_id");
