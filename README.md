@@ -13,7 +13,7 @@ mvn assembly:assembly
 ```
 
 ## Usage
-Jar file is automatically generated in *target/* folder, so you need to run it from there.
+- Jar file is automatically generated in *target/* folder, so you need to run it from there:
 ```sh
 java -jar target/digit-recognizer.jar
 ```
