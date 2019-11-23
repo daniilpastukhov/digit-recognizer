@@ -7,7 +7,7 @@ Digit classification program written in Java (based on MNIST digits dataset).
 mvn clean
 ```
 
-- Build the project and generate documentation
+- Build the project and generate documentation:
 ```sh
 mvn assembly:assembly
 ```
