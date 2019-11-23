@@ -17,7 +17,7 @@ mvn assembly:assembly
 ```sh
 java -jar target/digit-recognizer.jar
 ```
-> There is also already built jar file with the same name located in the root folder.
+> There is also already built jar file (MongoDB database!) with the same name located in the root folder.
 
 ## Scripts
 To run insert scripts, you need to go to the same folder as scripts are.
