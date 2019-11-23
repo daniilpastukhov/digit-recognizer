@@ -23,8 +23,6 @@ Digit classification program written in Java.
 └── src
     └── main
         ├── java
-        │   ├── META-INF
-        │   │   └── MANIFEST.MF
         │   └── com
         │       └── daniilpastukhov
         │           ├── Main.java
@@ -44,6 +42,6 @@ Digit classification program written in Java.
         └── resources
             ├── META-INF
             │   └── MANIFEST.MF
-            ├── Main.css
-            └── ui.fxml
+            ├── Main.css (CSS styles)
+            └── ui.fxml (JavaFX layout)
 ```
