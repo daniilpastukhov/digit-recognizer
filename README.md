@@ -76,3 +76,6 @@ To run insert scripts, you need to go to the same folder where scripts are.
             ├── Main.css (CSS styles)
             └── ui.fxml (JavaFX layout)
 ```
+
+# GUI
+<img src="https://i.imgur.com/WF3X8rK.png"></img>
