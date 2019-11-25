@@ -77,5 +77,5 @@ To run insert scripts, you need to go to the same folder where scripts are.
             └── ui.fxml (JavaFX layout)
 ```
 
-# GUI
+## GUI
 <img src="https://i.imgur.com/WF3X8rK.png"></img>
